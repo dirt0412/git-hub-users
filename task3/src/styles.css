@@ -1,0 +1,56 @@
+@import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
+
+.no-contr-info{
+    font-weight: 600;    
+    text-align: center;
+}
+
+.image-contribution{
+    height: 200px;
+    width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* padding-left:40px; 
+    padding-right: 40px; 
+    padding-bottom:20px; */
+    /* margin-left: 40%; */
+}
+
+/* PAGINATION */
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: #f4f4f4;
+  border-color: #DDDDDD;
+  color: inherit;
+  cursor: default;
+  z-index: 2;
+}
+.pagination > li > a,
+.pagination > li > span {
+  background-color: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  color: inherit;
+  float: left;
+  line-height: 1.42857;
+  margin-left: -1px;
+  padding: 4px 10px;
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.card-header{
+  text-align: center;
+}
+.sidebar-top-fixed{
+  position:fixed;
+  top: 5px;
+  z-index: 1;
+  padding-left: 40%;
+}
+

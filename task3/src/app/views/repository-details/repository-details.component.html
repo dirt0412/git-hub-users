@@ -1,0 +1,85 @@
+<div class="container" (scroll)="onScrollEvent($event)">
+
+  <div class="row">
+
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-8">
+      <p>
+        The repository details page where we can find other contributors
+      </p>
+    </div>
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-8">
+      <div class="card" *ngIf="repositoryDetailsModelItem != undefined; else noContributorsInfo">
+
+
+        <div class="card-header">Repository Details</div>
+
+        <!-- <div class="card-body">
+        <img src="{{repositoryDetailsModelItem?.avatar_url}}" alt="Avatar" class="image-contribution">
+      </div> -->
+
+        <div class="card-footer">
+          <div class="container">
+            <h4>
+              Login:
+              <b>{{login}}</b>
+            </h4>
+            <p>Repository name:
+              <b>{{id}}</b>
+            </p>
+
+            <p *ngIf="repositoryDetailsModelItem?.repoArrDetails != undefined && repositoryDetailsModelItem?.repoArrDetails.length > 0">Contributors: {{repositoryDetailsModelItem?.repoArrDetails.length}}</p>
+            <ul *ngIf="repositoryDetailsModelItem != undefined &&  repositoryDetailsModelItem?.repoArrDetails != undefined && repositoryDetailsModelItem?.repoArrDetails.length > 0">
+              <li *ngFor="let repo of repositoryDetailsModelItem?.repoArrDetails; let i = index" [routerLink]="['/contributors-details',repo.login]"
+                style="cursor: pointer;">
+                {{repo.login}}
+              </li>
+            </ul>
+
+            <!-- pager -->
+            <!-- <ul *ngIf="pager1.pages && pager1.pages.length" class="pagination">
+              <li [ngClass]="{disabled:pager1.currentPage === 1}">
+                <a (click)="setPage(1)">First</a>
+              </li>
+              <li [ngClass]="{disabled:pager1.currentPage === 1}">
+                <a (click)="setPage(pager1.currentPage - 1)">Previous</a>
+              </li>
+              <li *ngFor="let page of pager1.pages" [ngClass]="{active:pager1.currentPage === page}">
+                <a (click)="setPage(page)">{{page}}</a>
+              </li>
+              <li [ngClass]="{disabled:pager1.currentPage === pager1.totalPages}">
+                <a (click)="setPage(pager1.currentPage + 1)">Next</a>
+              </li>
+              <li [ngClass]="{disabled:pager1.currentPage === pager1.totalPages}">
+                <a (click)="setPage(pager1.totalPages)">Last</a>
+              </li>
+            </ul> -->
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="col-sm-2">
+
+    </div>
+
+  </div>
+
+  <ng-template #noContributorsInfo>
+    <div class="no-contr-info">
+      <p>Currently no contributors in service</p>
+    </div>
+  </ng-template>
+
+</div>

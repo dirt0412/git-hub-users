@@ -1,0 +1,125 @@
+<div class="container" (scroll)="onScrollEvent($event)">
+
+  <div class="row  card-group">
+    <div class="row">
+      <div class="col-sm-2">
+
+      </div>
+      <div class="col-sm-8">
+        <p>
+          The list of contributors to all Angular repositories. The ranking should be sortable by amount of contributions made by developer
+          to all repositories, by amount of followers, public repos & gists he/she published.
+        </p>
+      </div>
+      <div class="col-sm-2">
+
+      </div>
+    </div>
+
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-2">
+      <input type="button" style="font-size:12px;" class="btn btn-secondary" (click)="SortByContributors()" value="Sort by Contributors"
+        [ngClass]="{'selectSort': sortByFollowers == false && sortByPublicRepo == false && sortBypublicGists == false }" />
+    </div>
+    <div class="col-sm-2">
+      <input type="button" style="font-size:12px;" class="btn btn-secondary" (click)="SortByFollowers()" value="Sort by Followers"
+        [ngClass]="{'selectSort': sortByFollowers == true }" />
+    </div>
+    <div class="col-sm-2">
+      <input type="button" style="font-size:12px;" class="btn btn-secondary" (click)="SortByPublicRepo()" value="Sort by PublicRepo"
+        [ngClass]="{'selectSort': sortByPublicRepo == true }" />
+    </div>
+    <div class="col-sm-2">
+      <input type="button" style="font-size:12px;" class="btn btn-secondary" (click)="SortBypublicGists()" value="Sort by PublicGists"
+        [ngClass]="{'selectSort': sortBypublicGists == true }" />
+    </div>
+    <div class="col-sm-2">
+        <input type="button" style="font-size:12px;" class="btn btn-secondary" (click)="LoadMoreData()" value="Load more "
+         /> <span style="font-size:11px;margin-left:2px;">items: {{itemsLoadTotal}}</span>
+    </div>
+
+    <div class="card-group">
+      <div *ngFor="let con of contributorsModelArray;" class="col-sm-4 card-style" [routerLink]="['/contributors-details',con.login]"
+        style="cursor:pointer;">
+
+        <!-- <div class="card-header">Header</div> -->
+
+        <div class="card-body">
+          <img src="{{con?.avatar_url}}" alt="Avatar" class="image-contribution">
+        </div>
+
+        <div class="card-footer">
+          <div class="container">
+            <h4>
+              Login:
+              <b>{{con?.login}}</b>
+            </h4>
+            <p>Name:
+              <b>{{con?.name}}</b>
+            </p>
+            <p>Contributions:
+              <b>{{con?.contributions}}</b>
+            </p>
+            <p>Followers:
+              <b>{{con?.followers}}</b>
+            </p>
+            <p>Public Repos:
+              <b>{{con?.public_repos}}</b>
+            </p>
+            <p>Public Gists:
+              <b>{{con?.public_gists}}</b>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+   
+      <div class="col-sm-2">
+
+      </div>
+      <div class="col-sm-8">
+        <h3 *ngIf="contributorsModelArray.length == 0;" style="margin-top: 30px;" class="no-contr-info">
+          Currently no contributors in service
+
+        </h3>
+      </div>
+      <div class="col-sm-2">
+
+      </div>
+    
+
+
+  </div>
+
+
+
+  <!-- <div class="col-sm-12">
+      <table *ngIf="contributorsModelArray.length > 0; else noContributorsInfo" class="cs-table table table-striped">
+        <thead>
+          <tr>
+            <th>login</th>
+            <th>avatar_url</th>
+            <th>contributions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let con of contributorsModelArray; let i = index" [routerLink]="['/contributors-details',con.login]" class="">
+            <td> {{ con?.login }}</td>
+            <td> {{ con?.avatar_url }}</td>
+            <td> {{ con?.contributions }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #noContributorsInfo>
+        <div class="no-contr-info">
+          <p>Currently no contributors in service</p>
+        </div>
+      </ng-template>
+    </div> -->
+
+
+</div>
