@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ContributorsService } from "./../../Services/contributors.service";
 
 import { ContributorsModel } from '../../models/ContributorsModel';
-import { element } from 'protractor';
+//import { element } from 'protractor';
 
 @Component({
   selector: 'app-contributors',
@@ -26,10 +26,7 @@ export class ContributorsComponent implements OnInit {
     perPage: 20
   };
 
-  //contributorsModelItem: {}
-
   constructor(private contributorsService: ContributorsService) {
-    //this.contributorsModel = new ContributorsModel();
     this.sortByFollowers = false;
     this.sortByPublicRepo = false;
     this.sortBypublicGists = false;
@@ -43,7 +40,6 @@ export class ContributorsComponent implements OnInit {
 
   loadContributors(): void {
     this.contributorsService.getContributors(this.pager.page, this.pager.perPage).subscribe((ContributorsModel) => {
-      //this.contributorsModelArray = ContributorsModel;
       ContributorsModel.forEach(element => {
         this.contributorsModelArray.push(element);
       });
@@ -66,7 +62,6 @@ export class ContributorsComponent implements OnInit {
       });
 
     });
-    //console.log(this.contributorsModelArray);
 
   }
   SortByContributors() {

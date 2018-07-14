@@ -12,7 +12,7 @@ import { PagerService } from './../../common/pagination/pagination.component';
 export class ContributorsDetailsComponent implements OnInit {
   public contributorsModelItem: ContributorsModel;
   loginContributor: String;
-  //_timeout: any = null;
+
   //pagination
   pager1: any = {
     currentPage: 1,
@@ -53,14 +53,12 @@ export class ContributorsDetailsComponent implements OnInit {
   }
 
   toRepositoryDetails(repo) {
-    //let repoArr: any [];
     this.router.navigate(['/repository-details', { id: repo.name, login: repo.owner.login }]);
   }
 
   // paged items
   pagedItems: any[];
   setPage(page: number) {
-    //console.log(page);
     if (page < 1 || page > this.pager1.totalPages) {
       return;
     }
@@ -74,22 +72,6 @@ export class ContributorsDetailsComponent implements OnInit {
       this.pagedItems = this.contributorsModelItem.repoArr.slice(this.pager1.startIndex, this.pager1.endIndex + 1);
     }
   }
-
-  // @HostListener('window:scroll', ['$event']) onScrollEvent($event) {
-  //   if (this._timeout) {
-  //     window.clearTimeout(this._timeout);
-  //   }
-  //   this._timeout = window.setTimeout(() => {
-  //     this._timeout = null;
-
-  //     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-  //       this.pager.page++;
-  //       this.goToContributorsDetails(this.loginContributor);
-  //       //console.log("load next page");
-  //     }
-
-  //   }, 500);
-  // }
 
 
 }

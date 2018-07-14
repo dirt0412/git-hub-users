@@ -39,39 +39,9 @@ export class RepositoryDetailsComponent implements OnInit {
       repoDetails.forEach(element => {
         this.repositoryDetailsModelItem.repoArrDetails.push(element);
       });
-      //this.repositoryDetailsModelItem.repoArrDetails = repoDetails;
-
-      //console.log(this.repositoryDetailsModelItem.repoArrDetails.length);
-
-      // this.pager1.totalItems = this.repositoryDetailsModelItem.repoArrDetails != undefined ? this.repositoryDetailsModelItem.repoArrDetails.length : 0
-      // this.pager1.pageSize = 30
-      // this.pager1.startIndex = 0;//pagination
-      // this.pager1.endIndex = 0;//pagination
-      // this.pager1.pages = []
-      // this.pagedItems = []
-      // this.setPage(this.pager1.currentPage);
-      // this.pager1.totalPages = Math.ceil((this.repositoryDetailsModelItem.repoArrDetails != undefined ? this.repositoryDetailsModelItem.repoArrDetails.length : 0) / 30);
-      //console.log(repoDetails);
+     
     });
-  }
-
-  // paged items
-  // pagedItems: any[];
-  // setPage(page: number) {
-  //   //console.log(page);
-  //   if (page < 1 || page > this.pager1.totalPages) {
-  //     return;
-  //   }
-  //   if (page !== this.pager1.currentPage) {
-  //     this.pager1.currentPage = page
-  //     this.getRepoDetails(this.id, this.login);
-  //   } else {
-  //     // get pager object from service
-  //     this.pager1 = this.pagerService.getPager(this.pager1.totalItems, page, this.pager1.pageSize);
-  //     // get current page of items
-  //     this.pagedItems = this.repositoryDetailsModelItem.repoArrDetails.slice(this.pager1.startIndex, this.pager1.endIndex + 1);
-  //   }
-  // }
+  }  
 
   @HostListener('window:scroll', ['$event']) onScrollEvent($event) {
     console.log('repo-det');

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Route } from "@angular/router";
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 const APP_ROUTES: Route[] = [
@@ -30,7 +30,7 @@ import { PagerService } from './common/pagination/pagination.component';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(APP_ROUTES, { useHash: true })
   ],
   exports: [SidebarComponent, RouterModule],

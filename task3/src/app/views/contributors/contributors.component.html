@@ -36,8 +36,8 @@
         [ngClass]="{'selectSort': sortBypublicGists == true }" />
     </div>
     <div class="col-sm-2">
-        <input type="button" style="font-size:12px;" class="btn btn-secondary" (click)="LoadMoreData()" value="Load more "
-         /> <span style="font-size:11px;margin-left:2px;">items: {{itemsLoadTotal}}</span>
+      <input type="button" style="font-size:12px;" class="btn btn-secondary" (click)="LoadMoreData()" value="Load more " />
+      <span style="font-size:11px;margin-left:2px;">items: {{itemsLoadTotal}}</span>
     </div>
 
     <div class="card-group">
@@ -77,49 +77,23 @@
       </div>
     </div>
 
-   
-      <div class="col-sm-2">
 
-      </div>
-      <div class="col-sm-8">
-        <h3 *ngIf="contributorsModelArray.length == 0;" style="margin-top: 30px;" class="no-contr-info">
-          Currently no contributors in service
+    <div class="col-sm-2">
 
-        </h3>
-      </div>
-      <div class="col-sm-2">
+    </div>
+    <div class="col-sm-8">
+      <h3 *ngIf="contributorsModelArray.length == 0;" style="margin-top: 30px;" class="no-contr-info">
+        Currently no contributors in service
 
-      </div>
-    
+      </h3>
+    </div>
+    <div class="col-sm-2">
+
+    </div>
+
 
 
   </div>
-
-
-
-  <!-- <div class="col-sm-12">
-      <table *ngIf="contributorsModelArray.length > 0; else noContributorsInfo" class="cs-table table table-striped">
-        <thead>
-          <tr>
-            <th>login</th>
-            <th>avatar_url</th>
-            <th>contributions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let con of contributorsModelArray; let i = index" [routerLink]="['/contributors-details',con.login]" class="">
-            <td> {{ con?.login }}</td>
-            <td> {{ con?.avatar_url }}</td>
-            <td> {{ con?.contributions }}</td>
-          </tr>
-        </tbody>
-      </table>
-      <ng-template #noContributorsInfo>
-        <div class="no-contr-info">
-          <p>Currently no contributors in service</p>
-        </div>
-      </ng-template>
-    </div> -->
 
 
 </div>

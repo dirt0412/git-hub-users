@@ -7,11 +7,7 @@ export const environment = {
   //https://developer.github.com/v3/? INFO API
   
   urpApiRootEndpoint : "https://api.github.com/",
-
-  //urlApiGetAllContributors: "https://api.github.com/repos/angular/angular/contributors", 
-  //urlApiGetContributor: "https://api.github.com/users/",  //login ex:vicb
-  //urlApiGetListContributorForRepo: "https://api.github.com/repos/"
-  
+  keyApi: "15fef7413262f7bac02c5b0be88acea6f2624dad" //Personal access tokens   
 };
 
 /*

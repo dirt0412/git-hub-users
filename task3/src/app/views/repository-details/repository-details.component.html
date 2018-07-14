@@ -22,9 +22,6 @@
 
         <div class="card-header">Repository Details</div>
 
-        <!-- <div class="card-body">
-        <img src="{{repositoryDetailsModelItem?.avatar_url}}" alt="Avatar" class="image-contribution">
-      </div> -->
 
         <div class="card-footer">
           <div class="container">
@@ -43,25 +40,6 @@
                 {{repo.login}}
               </li>
             </ul>
-
-            <!-- pager -->
-            <!-- <ul *ngIf="pager1.pages && pager1.pages.length" class="pagination">
-              <li [ngClass]="{disabled:pager1.currentPage === 1}">
-                <a (click)="setPage(1)">First</a>
-              </li>
-              <li [ngClass]="{disabled:pager1.currentPage === 1}">
-                <a (click)="setPage(pager1.currentPage - 1)">Previous</a>
-              </li>
-              <li *ngFor="let page of pager1.pages" [ngClass]="{active:pager1.currentPage === page}">
-                <a (click)="setPage(page)">{{page}}</a>
-              </li>
-              <li [ngClass]="{disabled:pager1.currentPage === pager1.totalPages}">
-                <a (click)="setPage(pager1.currentPage + 1)">Next</a>
-              </li>
-              <li [ngClass]="{disabled:pager1.currentPage === pager1.totalPages}">
-                <a (click)="setPage(pager1.totalPages)">Last</a>
-              </li>
-            </ul> -->
 
           </div>
         </div>
