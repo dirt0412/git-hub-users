@@ -7,7 +7,7 @@ export const environment = {
   //https://developer.github.com/v3/? INFO API
   
   urpApiRootEndpoint : "https://api.github.com/",
-  keyApi: "15fef7413262f7bac02c5b0be88acea6f2624dad" //Personal access tokens   
+  keyApi: "885eab8943cc042f55e3f535f47a8ac46031aeb1" //Personal access tokens   
 };
 
 /*
