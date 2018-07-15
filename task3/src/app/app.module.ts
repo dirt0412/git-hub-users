@@ -12,8 +12,8 @@ const APP_ROUTES: Route[] = [
 ];
 import { ContributorsService } from "./Services/contributors.service";
 
-import { ContributorsComponent } from './views/contributors/contributors.component';
 //views
+import { ContributorsComponent } from './views/contributors/contributors.component';
 import { ContributorsDetailsComponent } from './views/contributors-details/contributors-details.component';
 import { RepositoryDetailsComponent } from './views/repository-details/repository-details.component';
 

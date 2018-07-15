@@ -1,20 +1,22 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import { ContributorsService } from "./../../Services/contributors.service";
 import { RepositoryDetailsModel } from '../../models/RepositoryDetailsModel';
 import { PagerService } from './../../common/pagination/pagination.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-repository-details',
   templateUrl: './repository-details.component.html',
   styleUrls: ['./repository-details.component.css']
 })
-export class RepositoryDetailsComponent implements OnInit {
+export class RepositoryDetailsComponent implements OnInit, OnDestroy {
   public repositoryDetailsModelItem: RepositoryDetailsModel;
  
   id: String;
   login: String;
   _timeout: any = null;
+  private intervalSubscriptionGetRepoDetails: Subscription;
   //pagination
   pager1: any = {
     currentPage: 1,
@@ -35,7 +37,7 @@ export class RepositoryDetailsComponent implements OnInit {
   }
 
   getRepoDetails(id, login): void {
-    this.contributorsService.getRepoDetails(id, login, this.pager1.currentPage, this.pager1.perPage).subscribe((repoDetails) => {
+    this.intervalSubscriptionGetRepoDetails = this.contributorsService.getRepoDetails(id, login, this.pager1.currentPage, this.pager1.perPage).subscribe((repoDetails) => {
       repoDetails.forEach(element => {
         this.repositoryDetailsModelItem.repoArrDetails.push(element);
       });
@@ -44,7 +46,6 @@ export class RepositoryDetailsComponent implements OnInit {
   }  
 
   @HostListener('window:scroll', ['$event']) onScrollEvent($event) {
-    console.log('repo-det');
     if (this._timeout) {
       window.clearTimeout(this._timeout);
     }
@@ -58,6 +59,10 @@ export class RepositoryDetailsComponent implements OnInit {
       }
 
     }, 500);
+  }
+
+  ngOnDestroy() {
+    this.intervalSubscriptionGetRepoDetails.unsubscribe();
   }
 
 }

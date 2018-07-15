@@ -1,15 +1,16 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { ContributorsService } from "./../../Services/contributors.service";
 
 import { ContributorsModel } from '../../models/ContributorsModel';
-//import { element } from 'protractor';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-contributors',
   templateUrl: './contributors.component.html',
   styleUrls: ['./contributors.component.css']
 })
-export class ContributorsComponent implements OnInit {
+export class ContributorsComponent implements OnInit, OnDestroy  {
   public contributorsModel: ContributorsModel;
   contributorsModelArray: ContributorsModel[] = [];
   _timeout: any = null;
@@ -20,6 +21,8 @@ export class ContributorsComponent implements OnInit {
   sortBypublicGists: boolean;
 
   itemsLoadTotal: number;
+  private intervalSubscriptionGetContributors: Subscription;
+  private intervalSubscriptiongetContributorsById: Subscription;
   // pager object
   pager: any = {
     page: 1,
@@ -39,7 +42,7 @@ export class ContributorsComponent implements OnInit {
   }
 
   loadContributors(): void {
-    this.contributorsService.getContributors(this.pager.page, this.pager.perPage).subscribe((ContributorsModel) => {
+    this.intervalSubscriptionGetContributors = this.contributorsService.getContributors(this.pager.page, this.pager.perPage).subscribe((ContributorsModel) => {
       ContributorsModel.forEach(element => {
         this.contributorsModelArray.push(element);
       });
@@ -51,7 +54,7 @@ export class ContributorsComponent implements OnInit {
 
   setFollowersSortForContributor() {
     this.contributorsModelArray.forEach(con => {
-      this.contributorsService.getContributorsById(con.login).subscribe((ContributorsModel) => {
+      this.intervalSubscriptiongetContributorsById = this.contributorsService.getContributorsById(con.login).subscribe((ContributorsModel) => {
 
         con.followers = ContributorsModel.followers;
         con.public_repos = ContributorsModel.public_repos;
@@ -129,6 +132,11 @@ export class ContributorsComponent implements OnInit {
   LoadMoreData() {
     this.pager.page++;
     this.loadContributors();
+  }
+
+  ngOnDestroy() {
+    this.intervalSubscriptionGetContributors.unsubscribe();
+    this.intervalSubscriptiongetContributorsById.unsubscribe();
   }
 
 

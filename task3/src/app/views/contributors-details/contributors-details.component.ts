@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import { ContributorsService } from "./../../Services/contributors.service";
 import { ContributorsModel } from '../../models/ContributorsModel';
 import { PagerService } from './../../common/pagination/pagination.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-contributors-details',
   templateUrl: './contributors-details.component.html',
   styleUrls: ['./contributors-details.component.css']
 })
-export class ContributorsDetailsComponent implements OnInit {
+export class ContributorsDetailsComponent implements OnInit, OnDestroy {
   public contributorsModelItem: ContributorsModel;
   loginContributor: String;
-
+  private intervalSubscriptiongetUserRepo: Subscription;
+  private intervalSubscriptiongetContributorsById: Subscription;
   //pagination
   pager1: any = {
     currentPage: 1,
@@ -32,10 +34,10 @@ export class ContributorsDetailsComponent implements OnInit {
   }
 
   goToContributorsDetails(login): void {
-    this.contributorsService.getContributorsById(login).subscribe((ContributorsModel) => {
+    this.intervalSubscriptiongetContributorsById = this.contributorsService.getContributorsById(login).subscribe((ContributorsModel) => {
       this.contributorsModelItem = ContributorsModel;
 
-      this.contributorsService.getUserRepo(login, this.pager1.currentPage, this.pager1.perPage).subscribe((userRepoArr) => {
+      this.intervalSubscriptiongetUserRepo = this.contributorsService.getUserRepo(login, this.pager1.currentPage, this.pager1.perPage).subscribe((userRepoArr) => {
         this.contributorsModelItem.repoArr = userRepoArr;
 
         this.pager1.totalItems = this.contributorsModelItem.public_repos
@@ -71,6 +73,11 @@ export class ContributorsDetailsComponent implements OnInit {
       // get current page of items
       this.pagedItems = this.contributorsModelItem.repoArr.slice(this.pager1.startIndex, this.pager1.endIndex + 1);
     }
+  }
+
+  ngOnDestroy() {
+    this.intervalSubscriptiongetUserRepo.unsubscribe();
+    this.intervalSubscriptiongetContributorsById.unsubscribe();
   }
 
 
